@@ -1,0 +1,32 @@
+extends layout 
+    
+block content 
+    div.form_container
+        h1= title 
+        form(method='POST', action='').form_main
+            div.form_group
+                label(for="username") Username: 
+                input#username(type="text" name="username" minlength='4' maxlength='18' required='true' value=(user === undefined ? "" : user.username))
+
+            div.form_group
+                label(for="firstname") Nombre: 
+                input#firstname(type="text" name="firstname" minlength='2' maxlength='18' required='true' value=(user === undefined ? "" : user.firstname))
+
+            div.form_group
+                label(for="lastname") Apellido: 
+                input#lastname(type="text" name="lastname" minlength='2' maxlength='18' required='true' value=(user === undefined ? "" : user.lastname))
+        
+            div.form_group
+                label(for="password") Contraseña: 
+                input#password(type="password" name="password" minlength='6' required='true' value=(user === undefined ? "" : user.password))
+
+            div.form_group
+                label(for="confirmPassword") Confirmar contraseña: 
+                input#confirmPassword(type="password" name="confirmPassword" minlength='6')
+
+            button(type="submit") Registrarse 
+        
+        if errors 
+            ul.error_field 
+                for error in errors 
+                    li!= error.msg
