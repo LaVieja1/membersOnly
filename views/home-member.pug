@@ -9,8 +9,8 @@ block content
           span.fullname #{post.user.fullname}
           if currentUser && currentUser.isAdmin
             a(href='/delete/'+ post.id).delete_post eliminar
+        div.date #{post.timestamp_formatted}
         div.title!= post.title
-        div.date #{post.timestamp_formatted} 
         hr
         div.content!= post.text
         hr

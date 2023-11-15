@@ -64,3 +64,15 @@ exports.post_list = async (req, res, next) => {
     }
 };
 
+// DELETE POST POST
+exports.delete_post = async (req, res, next) => {
+    if (!req.user || !req.user.isAdmin) {
+        return res.redirect("/");
+    }
+    try {
+        await Post.findByIdAndRemove(req.params.id);
+        return res.redirect("/");
+    } catch (err) {
+        return next(err);
+    }
+};
