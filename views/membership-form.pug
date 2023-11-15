@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    div.form_container
+        h1= title 
+        form(method='POST' action='').form_main
+            div.form_group
+                label(for="code") Codigo secreto: 
+                input#code(type="password", name="code", required="true")
+
+            button(type="submit") Enviar 
+
+        if error 
+            ul.error_field 
+                li!= error  

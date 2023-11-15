@@ -47,6 +47,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// custom use para usar en layout.pug
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();

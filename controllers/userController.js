@@ -75,4 +75,35 @@ exports.sign_up_post = [
             return next(err);
         }
     },
-]; 
+];
+
+//MEMBERSHIP GET
+exports.membership_get = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect("/login");
+    }
+    return res.render("membership-form", { title: "Se un miembro" });
+};
+
+//MEMBERSHIP POST
+exports.membership_post = async (req, res, next) => {
+    if (!req.user) {
+        return res.redirect("/login");
+    }
+
+    if (req.body.code !== process.env.MEMBERSHIP_CODE) {
+        return res.render("membership-form", {
+            title: "Se un miembro",
+            error: "Codigo incorrecto",
+        });
+    }
+    try {
+        const user = req.user;
+        user.isMember = true;
+        await user.save();
+
+        return res.redirect("/");
+    } catch (err) {
+        return next(err);
+    };
+}
