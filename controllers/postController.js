@@ -50,3 +50,17 @@ exports.new_post_post = [
     },
 ];
 
+// SHOW LIST OF POSTS
+exports.post_list = async (req, res, next) => {
+    try {
+        if (!req.user || !req.user.isMember) {
+            const posts = await Post.find().sort({ timestamp: -1 });
+            return res.render("home", { posts: posts });
+        }
+        const posts = await Post.find().sort({ timestamp: -1 }).populate("user");
+        return res.render("home-member", { posts: posts });
+    } catch (err) {
+        return next(err);
+    }
+};
+
