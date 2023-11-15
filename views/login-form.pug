@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+    div.form_container
+        h1= title 
+        form(method='POST' action="").form_main
+            div.form_group
+                label(for="username") Usuario: 
+                input#username(type="text", name="username", minlength='4' maxlength='18' required='true')
+            div.form_group
+                label(for="password") Contraseña:
+                input#password(type="password", name="password" minlength='6' required='true')
+
+            button(type="submit") Iniciar Sesion 
+
+        if errors 
+            ul.error_field 
+                for error in errors 
+                    li!= error 

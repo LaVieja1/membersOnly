@@ -77,6 +77,29 @@ exports.sign_up_post = [
     },
 ];
 
+// LOGIN GET
+exports.login_get = (req, res, next) => {
+    return res.render("login-form", {
+      title: "Login",
+      errors: req.flash("SignUpMessage"),
+    });
+};
+  
+// LOGIN POST
+exports.login_post = passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+});
+
+// LOGOUT
+exports.logout = (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      return res.redirect("/");
+    });
+};
+
 //MEMBERSHIP GET
 exports.membership_get = (req, res, next) => {
     if (!req.user) {

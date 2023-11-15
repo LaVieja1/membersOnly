@@ -12,6 +12,13 @@ router.get('/', function(req, res, next) {
 router.get("/sign-up", userController.sign_up_get);
 router.post("/sign-up", userController.sign_up_post);
 
+// LOGIN PAGE
+router.get("/login", userController.login_get);
+router.post("/login", userController.login_post);
+
+// LOGOUT
+router.get("/logout", userController.logout);
+
 // MEMBERSHIP PAGE
 router.get("/membership", userController.membership_get);
 router.post("/membership", userController.membership_post);
