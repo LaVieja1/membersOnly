@@ -70,7 +70,7 @@ exports.delete_post = async (req, res, next) => {
         return res.redirect("/");
     }
     try {
-        await Post.findByIdAndRemove(req.params.id);
+        await Post.findByIdAndDelete(req.params.id);
         return res.redirect("/");
     } catch (err) {
         return next(err);
